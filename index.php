@@ -1,5 +1,6 @@
 <?php
 require_once './model/db-connect.php';
+require_once './view/includes/header.php';
 session_start();
 if(isset($_POST['btn-enter'])) {
     $error = [];
@@ -29,31 +30,33 @@ if(isset($_POST['btn-enter'])) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Login</title>
-</head>
-<body>
-    <h1>Login</h1>
-    <?php
-        if (!empty($error)) {
-            foreach ($error as $erro) {
-                echo $erro;
-            }
-        }
-    ?>
-    <hr>
-    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-        Login:
-        <input type="text" name="login">
-        <br>
-        Senha:
-        <input type="password" name="password">
-        <br>
-        <button type="submit" name="btn-enter">Entrar</button>
-    </form>
-</body>
-</html>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="center">Login</h1>
+            <?php
+                if (!empty($error)) {
+                    foreach ($error as $erro) {
+                        echo $erro;
+                    }
+                }
+            ?>
+            <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input type="text" name="login" id="login" autocomplete="username" class="validate">
+                        <label for="login">Usuário</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input type="password" name="password" id="password" autocomplete="current-password" class="validate">
+                        <label for="password">Senha</label>
+                    </div>
+                </div>
+                <button type="submit" name="btn-enter" class="btn-large z-depth-2 center">Entrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<?php
+require_once './view/includes/footer.php';
+?>
